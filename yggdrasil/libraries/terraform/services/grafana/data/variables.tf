@@ -1,0 +1,4 @@
+variable "grafana_config" {
+
+}
+

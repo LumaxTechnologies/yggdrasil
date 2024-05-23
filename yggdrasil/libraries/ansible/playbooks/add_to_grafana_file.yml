@@ -1,0 +1,24 @@
+# add_to_grafana_file.yml
+---
+- name: upload of config files for Prometheus/Grafana monitoring
+  hosts: "{{ hosts }}"
+
+  vars: 
+    monitoring_folder: "{{ monitoring_folder }}"
+    prometheus_workdir: /etc/prometheus
+    customers:
+    - dev
+    - dmo
+    - xpo
+    - ci
+    - sys
+    - none
+
+  tasks:
+  - name: upload customer prometheus file
+    copy:
+      src: "{{ monitoring_folder }}/{{ item }}.json"
+      dest: "{{ prometheus_workdir }}/targets.conf.d.test/{{ item }}.node.json"
+    loop: "{{ customers }}"
+    become: true
+    become_method: sudo

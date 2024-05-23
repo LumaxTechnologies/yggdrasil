@@ -1,0 +1,45 @@
+---
+####################################
+# DESCRIPTION :
+# This role install HAProxy on a public proxy, and configure it for public
+# exposition of services on a private Kubernetes Cluster
+####################################
+
+# Tasks to execute if you upload your own SSL certificates to the proxy host
+- include_tasks: upload_certificates.yml
+  when: upload_certificates is true
+
+# Tasks to execute if the proxy host can download the SSL certificates by itself
+# on a dedicated repository like Nexus
+- include_tasks: download_certificates.yml
+  when: download_certificates is true
+
+# Installation of HA Proxy as a systemd daemon
+- include_tasks: haproxy_install.yml
+  when: install_haproxy is true
+
+# Custom configuration of HA Proxy for Kubernetes Services exposition
+- include_tasks: haproxy_setup.yml
+  when: configure_haproxy is true
+
+- name: Set SSL certificates folders ownership
+  file: 
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: haproxy
+    recurse: true
+  become: true
+  become_method: sudo
+  with_items: "{{ certificate_folders }}"
+  when: certifs_acl is true
+
+- name : Restart HAProxy
+  systemd:
+    name: haproxy.service
+    daemon-reload: yes
+    state: restarted
+  become: true
+  become_method: sudo
+  ignore_errors: yes # we assume that configurations may need updates to be valid
+  when: restart_haproxy is true

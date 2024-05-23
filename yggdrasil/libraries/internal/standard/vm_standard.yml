@@ -1,0 +1,511 @@
+### system images
+system_images:
+  ovh:
+    debian:
+      name: "Debian 9 Stretch"
+      username: "debian"
+    debian10:
+      name: "Debian 10 Buster"
+      username: "debian"
+    ubuntu_server:
+      name: "Ubuntu 20.04 LTS"
+      username: "ubuntu"
+    centos:
+      name: "CentOS 8"
+      username: "centos"
+  gcp:
+    debian:
+      name: "debian-9"
+      username: "debian"
+    debian10:
+      name: "debian-10"
+      username: "debian"
+    ubuntu_server_2004:
+      name: "ubuntu-2004-lts"
+    ubuntu_server_2204:
+      name: "ubuntu-2204-lts"
+      username: "ubuntu"
+    centos:
+      name: "centos-8"
+      username: "centos"
+  aws:
+    debian:
+      name: "debian-9"
+      username: "debian"
+    debian10:
+      name: "debian-10"
+      username: "debian"
+    ubuntu_server_2204:
+      name: "ubuntu-2204"
+      username: "ubuntu"
+    centos:
+      name: "centos-8"
+      username: "centos"
+    kubernetes: "AL2_x86_64"
+  azure:
+    ubuntu_server:
+      name:
+        publisher: "Canonical"
+        offer: "UbuntuServer"
+        sku: "18.04-LTS"
+        version: "latest" 
+      username: "ubuntu"
+    debian10:
+      name:
+        publisher: "Debian"
+        offer: "debian-10"
+        sku: "10"
+        version: "latest"
+      username: "debian"
+  nutanix:
+    debian10:
+      name: "debian-10-genericcloud-amd64.qcow2"
+      username: "debian"
+    debian11:
+      name: "debian-11-genericcloud-amd64.qcow2"
+      username: "debian"
+    debian11-packer:
+      name: "debian-test-user-data-packer-image-11"
+      username: "debian"
+    ubuntu_server:
+      name: "ubuntu-20.04-server-cloudimg-amd64.img"
+      username: "ubuntu"
+    ubuntu22_server:
+      name: "ubuntu-22.04-server-cloudimg-amd64.img"
+      username: "ubuntu"
+    ubuntu22_server_advanced:
+      name: "ubuntu-2204-lts-server-bt-ad-template-nutanix"
+      username: "ubuntu"
+    karbon_nutanix:
+      name: "ntnx-1.0"
+      username: "karbon"
+  vsphere:
+    debian9:
+      name: "mpacker-deb"
+      username: "vagrant"
+    ubuntu_server:
+      name: "ubuntu-server-focal"
+      username: "vagrant"
+    debian10:
+      name: "packer-deb10"
+      username: "vagrant"
+    ubuntu22_server:
+      name: "jammy/current/jammy-server-cloudimg-amd64.ova"
+      username: "ubuntu"
+    ubuntu22_server_template:
+      name: "ubuntu-2204-lts-server-bt-ad-template"
+      username: "ubuntu"
+    ubuntu22_server_template_legacy:
+      name: "ubuntu2204-template"
+      username: "ubuntu"
+
+
+### vm types
+vm_types:
+  ovh:
+    bastion:
+      prod:
+        type: "b2-15"
+      nonprod:
+        type: "b2-7"
+        data_volume_size: 50
+    mongo:
+      prod:
+        type: "b2-15"
+      nonprod:
+        type: "b2-7"
+        data_volume_size: 50
+    postgres:
+      prod:
+        type: "b2-15"
+      nonprod:
+        type: "b2-7"
+        data_volume_size: 50
+    jumpbox:
+      prod:
+        type: "b2-15"
+      nonprod:
+        type: "b2-7"
+        data_volume_size: 50
+    k8s_worker:
+      prod:
+        type: "b2-15"
+      nonprod:
+        type: "b2-7"
+        data_volume_size: 50
+  gcp:
+    bastion:
+      prod: 
+        type: "e2-micro"
+      nonprod:
+        type: "e2-micro"
+        data_volume_size: 125
+    jumpbox:
+      prod:
+        type: "e2-micro"
+      nonprod:
+        type: "e2-micro"
+        data_volume_size: 125
+    backend:
+      prod:
+        type: "e2-standard-2"
+      nonprod:
+        type: "e2-standard-2"
+        data_volume_size: 125
+    elastic:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    k8s_master:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    k8s_worker:
+      prod: 
+        type: "e2-standard-4"
+      nonprod: 
+        type: "e2-standard-4"
+        data_volume_size: 125
+    k8s_worker_high_memory:
+      prod: 
+        type: "e2-standard-4"
+      nonprod: 
+        type: "e2-standard-4"
+        data_volume_size: 125
+    k8s_worker_high_compute:
+      prod: 
+        type: "e2-standard-4"
+      nonprod: 
+        type: "e2-standard-4"
+        data_volume_size: 125
+    mongo:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    keycloak:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    sftp:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    sparkmaster:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    sparknode:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+    kibana:
+      prod: 
+        type: "e2-standard-2"
+      nonprod: 
+        type: "e2-standard-2"
+        data_volume_size: 125
+  aws:
+    bastion:
+      prod: 
+        type: "t2.small"
+      nonprod: 
+        type: "t2.small"
+        data_volume_size: 125
+    jumpbox:
+      prod: 
+        type: "t2.small"
+      nonprod: 
+        type: "t2.small"
+        data_volume_size: 125
+    k8s_worker_lowcost:
+      prod: 
+        type: "t3.xlarge"
+      nonprod: 
+        type: "t3.xlarge"
+        data_volume_size: 125
+    k8s_worker:
+      prod: 
+        type: "m5.xlarge"
+      nonprod: 
+        type: "m5.xlarge"
+        data_volume_size: 125
+    k8s_worker_high_memory:
+      prod: 
+        type: "m5.2xlarge"
+      nonprod: 
+        type: "m5.2xlarge"
+        data_volume_size: 125
+    k8s_worker_high_compute:
+      prod: 
+        type: "m5.2xlarge"
+      nonprod: 
+        type: "m5.2xlarge"
+        data_volume_size: 125
+    backend:
+      prod:
+        type: "t3.medium"
+      nonprod:
+        type: "t3.medium"
+        data_volume_size: 125
+    elastic:
+      prod:
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    k8s_master:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    mongo:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    keycloak:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    sftp:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    sparkmaster:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    sparknode:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+    kibana:
+      prod: 
+        type: "t3.medium"
+      nonprod: 
+        type: "t3.medium"
+        data_volume_size: 125
+  azure:
+    bastion:
+      prod: 
+        type: "Standard_DS1_v2"
+      nonprod: 
+        type: "Standard_DS1_v2"
+    jumpbox:
+      prod: 
+        type: "Standard_DS1_v2"
+      nonprod: 
+        type: "Standard_DS1_v2"
+    k8s_worker:
+      prod: 
+        type: "Standard_DS2_v2"
+      nonprod: 
+        type: "Standard_DS2_v2"
+    backend:
+      prod: 
+        type: "Standard_DS2_v2"
+      nonprod: 
+        type: "Standard_DS2_v2"
+  default:
+    bastion:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 16
+        memory: 1024
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 16
+        memory: 1024
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+    jumpbox:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 5
+        memory: 1024
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+    backend:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 100
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 4
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 40
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    elastic:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 60
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    k8s_master:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 100
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    k8s_worker:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 100
+        memory: 8192
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    mongo:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 100
+        memory: 32768
+        nb_sockets: 2
+        nb_vcpu_per_socket: 4
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    keycloak:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 60
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+    sftp:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 60
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 30
+        memory: 2048
+        nb_sockets: 1
+        nb_vcpu_per_socket: 1
+    sparkmaster:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 60
+        memory: 16384
+        nb_sockets: 1
+        nb_vcpu_per_socket: 4
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    sparknode:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 160
+        memory: 32768
+        nb_sockets: 2
+        nb_vcpu_per_socket: 4
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2
+    kibana:
+      prod:
+        data_volume_size: 0
+        root_volume_size: 60
+        memory: 8192
+        nb_sockets: 1
+        nb_vcpu_per_socket: 4
+      nonprod:
+        data_volume_size: 0
+        root_volume_size: 20
+        memory: 4096
+        nb_sockets: 1
+        nb_vcpu_per_socket: 2 
+
+root_volume_size:
+  vsphere: 40
+  default: 40
+
+default_os_images:
+  default: ubuntu_server
+
+default_os_user:
+  default: ubuntu
+
+default_firewall_rules_per_type:
+  jumpbox: ["icmp","ssh", "nexus"]
+  bastion: ["icmp","ssh","http","https","http_bis","http_ter"]
+  kubemaster:
+  - k8s_all
+  kubenode:
+  - k8s_all
+  kubenode_high_memory:
+  - k8s_all
+  kubenode_high_compute:
+  - k8s_all
