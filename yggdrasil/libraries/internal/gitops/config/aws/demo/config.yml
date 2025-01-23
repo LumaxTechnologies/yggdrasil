@@ -64,7 +64,7 @@ vm:
         type: "bastion"
         prefix: "demo_"
         availability_zone: "us-east-1a"
-        system_image: "ubuntu_server"
+        system_image: "ubuntu_server_2204"
         subnet_type: "public"
         private_ip: "10.0.5.10"
         root_volume_type: "small_root"
@@ -85,7 +85,7 @@ vm:
         type: "jumpbox"
         prefix: "demo_"
         availability_zone: "us-east-1a"
-        system_image: "ubuntu_server"
+        system_image: "ubuntu_server_2204"
         subnet_type: "private"
         private_ip: "10.0.10.10"
         root_volume_type: "small_root"
@@ -103,7 +103,7 @@ vm:
         type: "backend"
         prefix: "demo_"
         availability_zone: "us-east-1a"
-        system_image: "ubuntu_server"
+        system_image: "ubuntu_server_2204"
         subnet_type: "private"
         private_ip: "10.0.10.11"
         root_volume_type: "large_root"
@@ -118,31 +118,31 @@ vm:
 
 independent_volumes: {}
 
-kubernetes:
-  k8s_cluster :
-    prefix: "bt"
-    zones: ["us-east-1a"]
-    network: "main_network"
-    subnetworks: ["datalake_replication_subnet_1", "datalake_replication_subnet_2", "datalake_replication_subnet_3"]
-    os_username: "acme"
-    password: "acme123acme#acme123"
-    system_image: "kubernetes"
-    instance_type: "k8s_worker"
-    k8s_node_groups :
-      k8s_main :
-        desired_size: 1
-        disk_size: 16
-        max_size: 1
-        min_size: 1
-        subnetwork: "datalake_replication_subnet_1"
-    ingress_rules: ["icmp","ssh","https", "http_bis", "http", "nginx_k8s", "resty_k8s", "keycloak_k8s"]
-    egress_rules: ["default"]
-    cluster_volumes :
-      first_cluster_volume :
-        size: 256
-        name: "data_disk"
-        zone: "us-east-1a"
-        type: "sc1"
+# kubernetes:
+#   k8s_cluster :
+#     prefix: "bt"
+#     zones: ["us-east-1a"]
+#     network: "main_network"
+#     subnetworks: ["datalake_replication_subnet_1", "datalake_replication_subnet_2", "datalake_replication_subnet_3"]
+#     os_username: "acme"
+#     password: "acme123acme#acme123"
+#     system_image: "kubernetes"
+#     instance_type: "k8s_worker"
+#     k8s_node_groups :
+#       k8s_main :
+#         desired_size: 1
+#         disk_size: 16
+#         max_size: 1
+#         min_size: 1
+#         subnetwork: "datalake_replication_subnet_1"
+#     ingress_rules: ["icmp","ssh","https", "http_bis", "http", "nginx_k8s", "resty_k8s", "keycloak_k8s"]
+#     egress_rules: ["default"]
+#     cluster_volumes :
+#       first_cluster_volume :
+#         size: 256
+#         name: "data_disk"
+#         zone: "us-east-1a"
+#         type: "sc1"
 
 ansible:
 - name: "add users"

@@ -123,6 +123,14 @@ provider_secrets_helper = {
             },
             {
                 "to_confirm": True,
+                "confirmation_helper": "Do you wish to set a default SSH username for remote SSH login ?",
+                "helper" : "Please provide your SSH username",
+                "default": "ubuntu",
+                "name" : "CLOUDTIGER_SSH_USERNAME",
+                "default_confirmation_status": True
+            },
+            {
+                "to_confirm": True,
                 "confirmation_helper": """Do you wish to provide your sudo password ? It will be stored locally in the .env file encoded in base64. 
 If no, you will be prompted to provide your SSH password when executing Ansible without private SSH key access""",
                 "helper" : "Please provide your sudo password",

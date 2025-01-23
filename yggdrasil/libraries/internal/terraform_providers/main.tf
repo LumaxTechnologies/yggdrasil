@@ -120,7 +120,7 @@ locals {
 					### OS system image
 					system_image = lookup(
 						var.system_images[var.cloud_provider],
-						lookup(vm, "system_image", "ubuntu_server")
+						lookup(vm, "system_image", "ubuntu_server_2204")
 					)["name"]
 
 					### default OS user
@@ -130,7 +130,7 @@ locals {
 					### default_os_user[provider]
 					user = lookup(vm, "os_user",
 						lookup(
-							var.system_images[var.cloud_provider][lookup(vm, "system_image", "ubuntu_server")],
+							var.system_images[var.cloud_provider][lookup(vm, "system_image", "ubuntu_server_2204")],
 							"username",
 							lookup(var.default_os_user, var.cloud_provider, var.default_os_user["default"])
 						)

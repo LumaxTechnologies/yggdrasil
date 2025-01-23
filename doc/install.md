@@ -5,8 +5,10 @@
 		- [Python](#python)
 		- [Ansible](#ansible)
 		- [Terraform](#terraform)
+			- [On Ubuntu/Debian](#on-ubuntudebian)
+			- [On MacOS](#on-macos)
 		- [Kubernetes and Helm](#kubernetes-and-helm)
-		- [On MacOS](#on-macos)
+		- [On MacOS](#on-macos-1)
 	- [Installation from sources](#installation-from-sources)
 			- [debug mode](#debug-mode)
 			- [production mode](#production-mode)
@@ -92,8 +94,24 @@ sudo apt install sshpass
 
 On MacOS :
 
-```bash
+Install Homebrew (if not already installed):
 
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install sshpass using Homebrew:
+
+```bash
+brew install esolitos/sshpass/sshpass
+```
+
+The sshpass package is not included in the main Homebrew repository due to security concerns, so it’s hosted under the esolitos/sshpass tap.
+
+Verify Installation: After installation, confirm that sshpass is installed:
+
+```bash
+sshpass -V
 ```
 
 ### Terraform
@@ -107,6 +125,25 @@ sudo apt install curl lsb-release software-properties-common
 ```
 
 Then follow the instructions for your OS [here](https://www.terraform.io/downloads)
+
+#### On Ubuntu/Debian
+
+Install with :
+
+```bash
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+```
+
+#### On MacOS
+
+Install with :
+
+```bash
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+```
 
 ### Kubernetes and Helm
 

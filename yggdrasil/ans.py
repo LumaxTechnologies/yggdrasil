@@ -279,14 +279,16 @@ def set_vm_ansible_parameters(operation: Operation, vm_name: str) -> dict:
                     vlan_name = vlan_iter_name
                     break
 
-    root_volume_size=operation.scope_config_dict['vm'][network_name][vlan_name][vm_name]['root_volume_size']
+    root_volume_size=operation.scope_config_dict['vm'][network_name][vlan_name][vm_name].get('root_volume_size', "irrelevant")
 
     vm_ssh_parameters = {
         "ansible_ssh_host": vm_name,
         "ansible_user": ansible_user,
-        "private_ip": ansible_private_ip,
-        "root_disk_size": root_volume_size
+        "private_ip": ansible_private_ip
     }
+
+    if root_volume_size != "irrelevant":
+        vm_ssh_parameters['root_disk_size'] = root_volume_size
 
     # add metadata if they exist
     if "metadata" in operation.scope_config_dict["vm_ssh_params"][vm_name].keys():
@@ -521,9 +523,9 @@ def install_ansible_dependencies(operation: Operation):
     command = "ansible-galaxy role list"
     if os.path.exists(ansible_role_list):
         os.remove(ansible_role_list)
+
     bash_action(operation.logger, command, operation.project_root,
                 os.environ, ansible_role_list)
-
     installed_ansible_roles = dict()
 
     try :
@@ -539,12 +541,15 @@ def install_ansible_dependencies(operation: Operation):
 
     role_update_list = []
     for required_role in ansible_requirement_content['roles']:
+        print(required_role)
         if isinstance(required_role, dict):
             if 'name' not in required_role.keys():
                 raise Exception("Role name not specified in Ansible requirements file")
             required_role_name = required_role['name']
             if required_role.get('version', 'latest') != installed_ansible_roles.get(required_role_name, "unknown"):
                 role_update_list.append(required_role_name)
+        if isinstance(required_role, str):
+            role_update_list.append(required_role)
 
     role_update_commands = [f"ansible-galaxy install -r ansible/requirements.yml {role_name} --force --ignore-errors" for role_name in role_update_list]
 

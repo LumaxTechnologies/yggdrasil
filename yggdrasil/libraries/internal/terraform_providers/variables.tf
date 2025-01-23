@@ -89,26 +89,32 @@ variable default_password {
 
 variable domain_ldap {
 	description = "LDAP or AD Domain to join"
+	default = ""
 }
 
 variable ou_ldap {
 	description = "LDAP or AD OU to join computer"
+	default = ""
 }
 
 variable user_ldap_join {
 	description = "User to join computer to LDAP or AD"
+	default = ""
 }
 
 variable password_user_ldap_join {
 	description = "Password of User to join computer to LDAP or AD"
+	default = ""
 }
 
 variable ldap_user_search_base {
 	description = "Search base to lookup User on LDAP or AD"
+	default = ""
 }
 
 variable ldap_sudo_search_base {
 	description = "Search base to lookup Sudo command on LDAP or AD"
+	default = ""
 }
 
 variable scope_folder {

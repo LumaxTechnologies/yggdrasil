@@ -1,4 +1,5 @@
 # Prerequisites for running Yggdrasil on public cloud providers
+
 - [Prerequisites for running Yggdrasil on public cloud providers](#prerequisites-for-running-yggdrasil-on-public-cloud-providers)
 	- [GCP](#gcp)
 	- [AWS](#aws)
@@ -26,7 +27,7 @@ In order to download this json credentials file, once you have created your acco
 
 Once it is done, get credential templates for GCP :
 
-```
+```bash
 cp secrets/gcp/.env.tpl secrets/gcp/.env
 cp secrets/gcp/credentials.json.tpl secrets/gcp/credentials.json
 ```
@@ -51,7 +52,7 @@ You will obtain a .csv file containing your programmatic access credentials
 
 First, get a credential template for AWS :
 
-```
+```bash
 cp secrets/aws/.env.tpl secrets/aws/.env
 ```
 
@@ -59,7 +60,7 @@ Then, use the content of the csv to fill the file `secrets/aws/.env`.
 
 ## Azure
 
-In order to prepare Terraform for Azure use, you will need to follow the tutorial [here]](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
+In order to prepare Terraform for Azure use, you will need to follow the tutorial [here](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
 
 Get the subscription ID for Azure CLI
 
@@ -77,7 +78,7 @@ az ad sp create-for-rbac --role="Owner" --scopes="/subscriptions/${SUBSCRIPTION_
 
 First, get credential templates for Azure :
 
-```
+```bash
 cp secrets/azure/.env.tpl secrets/azure/.env
 cp secrets/azure/az_account.json.tpl secrets/azure/az_account.json
 cp secrets/azure/service_principal.json.tpl secrets/azure/service_principal.json
@@ -89,7 +90,7 @@ Then, use the output of the `az` command above to fill the file `secrets/azure/.
 
 In order to use the vSphere modules with a vSphere cluster, you will need to set the following `secrets/vsphere/.env` file :
 
-```
+```bash
 export TF_VAR_vsphere_user=<YOUR_NUTANIX_USERNAME>
 export TF_VAR_vsphere_password=<YOUR_NUTANIX_PASSWORD>
 export TF_VAR_vsphere_url=<YOUR_NUTANIX_ENDPOINT>
@@ -99,7 +100,7 @@ export TF_VAR_vsphere_url=<YOUR_NUTANIX_ENDPOINT>
 
 In order to use the Nutanix modules with a Nutanix cluster, you will need to set the following `secrets/nutanix/.env` file :
 
-```
+```bash
 export TF_VAR_nutanix_user=<YOUR_NUTANIX_USERNAME>
 export TF_VAR_nutanix_password=<YOUR_NUTANIX_PASSWORD>
 export TF_VAR_nutanix_endpoint=<YOUR_NUTANIX_ENDPOINT>

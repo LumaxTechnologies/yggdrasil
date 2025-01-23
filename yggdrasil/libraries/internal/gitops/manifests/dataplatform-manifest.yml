@@ -435,3 +435,80 @@ infrastructure:
           memory: 1024
           nb_sockets: 1
           nb_vcpu_per_socket: 1
+
+  sizing:
+    prod:
+      base:
+        kubemaster: 
+          count: 1
+        kubenode: 
+          count: 3
+        bastion:
+          count: 1
+          exposition_layer: True
+      databases:
+        kubenode: 
+          count: 1
+      dataflow:
+        kubenode: 
+          count: 1
+      monitoring:
+        kubenode: 
+          count: 1
+
+      high_memory:
+        kubenode_high_memory: 
+          count: 1
+      compute:
+        kubenode_high_compute: 
+          count: 1
+
+      lab:
+        kubenode: 
+          count: 1
+
+      ci:
+        kubenode: 
+          count: 1
+      front:
+        kubenode: 
+          count: 1
+
+    nonprod:
+      base:
+        kubemaster: 
+          count: 1
+        kubenode: 
+          count: 3
+        bastion:
+          count: 1
+          exposition_layer: True
+      databases:
+        kubenode: 
+          count: 1
+      dataflow:
+        kubenode: 
+          count: 1
+      monitoring:
+        kubenode: 
+          count: 1
+
+      high_memory:
+        kubenode_high_memory: 
+          count: 1
+      compute:
+        kubenode_high_compute: 
+          count: 1
+
+      lab:
+        kubenode: 
+          count: 1
+
+      ci:
+        kubenode: 
+          count: 1
+      front:
+        kubenode: 
+          count: 1
+
+  # vm_type_count:
